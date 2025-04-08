@@ -26,20 +26,51 @@
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-@layer components {
-  .btn-primary {
-    @apply bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-all duration-300 ease-in-out;
-  }
+/* Переводим компоненты на чистый CSS, чтобы избежать проблем сборки Tailwind */
+.btn-primary {
+  background-color: var(--blue-500);
+  color: white;
+  padding: 0.5rem 1rem; /* Соответствует px-4 py-2 */
+  border-radius: 0.375rem; /* Соответствует rounded-md */
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: var(--blue-600);
+}
   
-  .btn-secondary {
-    @apply bg-[rgb(var(--secondary-color))] text-white px-4 py-2 rounded-md hover:bg-[rgba(var(--secondary-color),0.8)] transition-all duration-300 ease-in-out;
-  }
+.btn-secondary {
+  background-color: rgb(var(--secondary-color));
+  color: white;
+  padding: 0.5rem 1rem; /* Соответствует px-4 py-2 */
+  border-radius: 0.375rem; /* Соответствует rounded-md */
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(var(--secondary-color), 0.8);
+}
   
-  .card {
-    @apply glass-effect rounded-lg p-6 shadow-lg;
-  }
+.card {
+  /* Применяем стили glass-effect напрямую */
+  background-color: rgba(30, 30, 35, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.5rem; /* Соответствует rounded-lg */
+  padding: 1.5rem; /* Соответствует p-6 */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); /* Примерный аналог shadow-lg */
+}
   
-  .input-field {
-    @apply bg-[rgba(30,30,35,0.9)] border border-[rgba(255,255,255,0.1)] rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500;
-  }
+.input-field {
+  background-color: rgba(30, 30, 35, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.375rem; /* Соответствует rounded-md */
+  padding: 0.5rem 1rem; /* Соответствует px-4 py-2 */
+  color: white;
+  outline: none; /* Убираем стандартный outline */
+}
+
+.input-field:focus {
+  box-shadow: 0 0 0 2px var(--blue-500); /* Соответствует focus:ring-2 focus:ring-blue-500 */
 }
