@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: truespace
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: MONGODB_URI
+        value: mongodb+srv://georgeadmin:5ulTh$yP*#9l@clustertruespacegeorge.8cjlgf9.mongodb.net/?retryWrites=true&w=majority&appName=ClusterTrueSpaceGeorge
+      - key: NEXTAUTH_SECRET
+        value: 7x9Kp2mN5vR8tY3hJ6wL4qX1cB0zF4dA7sE2gH5jM8nP
+      - key: NEXTAUTH_URL
+        value: https://truespace-inte.onrender.com
+      - key: JWT_SECRET
+        value: 9kL3mP6vR8tY2hJ5wN4qX1cB0zF4dA7sE2gH5jM8nP7xK2mN5vR8tY 
