@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
 import { 
   FiUsers, FiVideo, FiTag, FiKey, FiPlus, 
   FiEdit, FiTrash2, FiCheck, FiX, FiSearch 
@@ -22,7 +21,6 @@ interface PromoCode {
 
 const AdminPage = () => {
   const { data: session } = useSession();
-  const router = useRouter();
   const [activeTab, setActiveTab] = useState('promocodes');
   const [loading, setLoading] = useState(true);
   const [promoCodes, setPromoCodes] = useState<PromoCode[]>([]);

@@ -3,9 +3,13 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { FiUser, FiMail, FiLock, FiEye, FiEyeOff } from 'react-icons/fi';
 import { motion } from 'framer-motion';
+
+interface ErrorResponse {
+  message: string;
+}
 
 const SignUp = () => {
   const [name, setName] = useState('');
@@ -46,9 +50,14 @@ const SignUp = () => {
       });
       
       router.push('/auth/signin?registered=true');
-    } catch (error: any) {
-      if (error.response?.data?.message) {
-        setError(error.response.data.message);
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        const axiosError = error as AxiosError<ErrorResponse>;
+        if (axiosError.response?.data?.message) {
+          setError(axiosError.response.data.message);
+        } else {
+          setError('Произошла ошибка при регистрации');
+        }
       } else {
         setError('Произошла ошибка при регистрации');
       }

@@ -15,7 +15,7 @@ const promoCodeSchema = z.object({
 });
 
 // GET /api/promocodes - получить все промо-коды
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     await dbConnect();
     

@@ -39,7 +39,7 @@ const SignIn = () => {
       }
       
       router.push('/dashboard');
-    } catch (error) {
+    } catch (err) {
       setError('Произошла ошибка при входе');
     } finally {
       setLoading(false);

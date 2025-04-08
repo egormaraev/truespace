@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FiClock, FiVideo, FiStar, FiHeart } from 'react-icons/fi';
+import { FiVideo, FiHeart } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 
 interface CourseCardProps {

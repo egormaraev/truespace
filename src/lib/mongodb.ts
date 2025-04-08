@@ -1,11 +1,15 @@
 import mongoose from 'mongoose';
 
-declare global {
-  var mongoose: {
-    conn: mongoose.Connection | null;
-    promise: Promise<mongoose.Connection> | null;
-  };
+// Глобальный интерфейс для кэша подключения MongoDB
+interface MongooseCache {
+  conn: mongoose.Connection | null;
+  promise: Promise<mongoose.Connection> | null;
 }
+
+// Глобальная переменная для кэширования соединения
+const globalWithMongoose = global as typeof global & {
+  mongoose: MongooseCache;
+};
 
 if (!process.env.MONGODB_URI) {
   throw new Error('Пожалуйста, определите переменную MONGODB_URI в .env.local');
@@ -16,10 +20,10 @@ const MONGODB_URI = process.env.MONGODB_URI;
 /**
  * Глобальное соединение с MongoDB.
  */
-let cached = global.mongoose;
+let cached = globalWithMongoose.mongoose;
 
 if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null };
+  cached = globalWithMongoose.mongoose = { conn: null, promise: null };
 }
 
 async function dbConnect() {
