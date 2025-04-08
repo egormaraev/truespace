@@ -17,7 +17,7 @@
 }
 
 .glass-effect {
-  @apply bg-[rgba(30,30,35,0.7)] backdrop-blur-md border border-[rgba(255,255,255,0.08)];
+  @apply bg-[rgba(30,30,35,0.7)] backdrop-blur border border-[rgba(255,255,255,0.08)];
 }
 
 @layer components {
