@@ -72,7 +72,7 @@ export default function Home() {
                 </button>
               </div>
             </motion.form>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -168,13 +168,13 @@ export default function Home() {
               <Link
                 href="/auth/signup"
                 className="btn-primary text-center py-3 px-8"
-              >
+        >
                 Регистрация
               </Link>
               <Link
                 href="/courses"
                 className="bg-transparent border border-blue-500 text-blue-400 py-3 px-8 rounded-md hover:bg-blue-500 hover:text-white transition-colors text-center"
-              >
+        >
                 Посмотреть курсы
               </Link>
             </div>

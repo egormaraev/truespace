@@ -1,6 +1,4 @@
 import type { Config } from 'tailwindcss';
-// @ts-ignore - Игнорируем проблему типизации для JS-плагина
-const { backdropBlurPlugin } = require('./src/utils/tailwind-plugins');
 
 const config: Config = {
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
@@ -53,9 +51,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [
-    backdropBlurPlugin,
-  ],
+  plugins: [],
 };
 
 export default config; 

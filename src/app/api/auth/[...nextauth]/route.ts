@@ -3,8 +3,7 @@ import NextAuth from 'next-auth/next';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
 import dbConnect from '@/lib/mongodb';
-import User from '@/models/User';
-import type { UserDocument } from '@/models/User';
+import User, { UserDocument } from '@/models/User';
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -21,8 +20,8 @@ export const authOptions: NextAuthOptions = {
 
         await dbConnect();
 
-        // Найти пользователя по email
-        const user = await User.findOne({ email: credentials.email }).select('+password');
+        // Найти пользователя по email и явно указать тип результата
+        const user: UserDocument | null = await User.findOne({ email: credentials.email }).select('+password');
         
         if (!user) {
           throw new Error('Неверный email или пароль');
@@ -36,7 +35,7 @@ export const authOptions: NextAuthOptions = {
         }
         
         return {
-          id: user._id.toString(),
+          id: user._id.toString(), // Теперь тип user известен
           name: user.name,
           email: user.email,
           image: user.image,

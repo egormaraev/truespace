@@ -19,7 +19,11 @@
 }
 
 .glass-effect {
-  @apply bg-[rgba(30,30,35,0.7)] backdrop-blur border border-[rgba(255,255,255,0.08)];
+  /* Используем прямой CSS для надежности в сборке */
+  background-color: rgba(30, 30, 35, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); /* Для поддержки Safari */
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 @layer components {

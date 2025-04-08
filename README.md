@@ -55,9 +55,9 @@ TrueSpace - это современная образовательная пла�
    ```
 
 4. Запустите сервер разработки:
-   ```bash
-   npm run dev
-   ```
+```bash
+npm run dev
+```
 
 5. Откройте [http://localhost:3000](http://localhost:3000) в браузере.
 
