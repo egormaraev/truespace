@@ -2,15 +2,16 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['res.cloudinary.com', 'images.unsplash.com'],
+    domains: ['res.cloudinary.com', 'images.unsplash.com', 'picsum.photos', 'via.placeholder.com', 'i.imgur.com'],
+    unoptimized: process.env.NODE_ENV === 'production',
   },
   serverExternalPackages: ['mongoose'],
+  // Временно отключаем проверку линтера при сборке для более быстрого деплоя
+  // В будущем можно включить обратно после исправления всех ошибок
   eslint: {
-    // Отключаем проверку ESLint при сборке
     ignoreDuringBuilds: true,
   },
   typescript: {
-    // Отключаем проверку TypeScript при сборке
     ignoreBuildErrors: true,
   },
 };

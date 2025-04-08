@@ -81,4 +81,13 @@ UserSchema.methods.comparePassword = async function (candidatePassword: string) 
   return bcrypt.compare(candidatePassword, this.password);
 };
 
-export default mongoose.models.User || mongoose.model<UserDocument>('User', UserSchema); 
+// Отдельный тип для сериализованного пользователя (без внутренних деталей mongoose)
+export type SerializedUser = Omit<UserDocument, 'password' | '_id'> & {
+  id: string;
+};
+
+// Экспортируем модель User, если она уже существует, или создаем новую
+const User = mongoose.models.User as mongoose.Model<UserDocument> || 
+             mongoose.model<UserDocument>('User', UserSchema);
+
+export default User; 

@@ -4,6 +4,7 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
 import dbConnect from '@/lib/mongodb';
 import User from '@/models/User';
+import type { UserDocument } from '@/models/User';
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -40,6 +41,7 @@ export const authOptions: NextAuthOptions = {
           email: user.email,
           image: user.image,
           role: user.role,
+          promoCodes: user.promoCodes || [],
         };
       },
     }),
@@ -62,6 +64,7 @@ export const authOptions: NextAuthOptions = {
       if (user) {
         token.id = user.id;
         token.role = user.role;
+        token.promoCodes = user.promoCodes as string[] | undefined;
       }
       return token;
     },
@@ -69,6 +72,7 @@ export const authOptions: NextAuthOptions = {
       if (token) {
         session.user.id = token.id as string;
         session.user.role = token.role as string;
+        session.user.promoCodes = (token.promoCodes as string[]) || [];
       }
       return session;
     },

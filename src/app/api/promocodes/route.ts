@@ -31,13 +31,15 @@ export async function GET() {
     
     // Для обычных пользователей возвращаем только их промо-коды
     if (session.user.role !== 'admin') {
+      const userPromoCodes = session.user.promoCodes || [];
+      
       // Получаем пользователя с его промо-кодами
-      const userPromoCodes = await PromoCode.find({
-        code: { $in: session.user.promoCodes || [] },
+      const promoCodesData = await PromoCode.find({
+        code: { $in: userPromoCodes },
         isActive: true,
       });
       
-      return NextResponse.json(userPromoCodes);
+      return NextResponse.json(promoCodesData);
     }
     
     // Для админов возвращаем все промо-коды

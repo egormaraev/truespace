@@ -1,4 +1,6 @@
 import type { Config } from 'tailwindcss';
+// @ts-ignore - Игнорируем проблему типизации для JS-плагина
+const { backdropBlurPlugin } = require('./src/utils/tailwind-plugins');
 
 const config: Config = {
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
@@ -49,37 +51,10 @@ const config: Config = {
         'glow-blue': '0 0 15px rgba(96, 165, 250, 0.5)',
         'glow-white': '0 0 15px rgba(255, 255, 255, 0.3)',
       },
-      backdropBlur: {
-        'none': '0',
-        'sm': '4px',
-        'DEFAULT': '8px',
-        'md': '12px',
-        'lg': '16px',
-        'xl': '24px',
-        '2xl': '40px',
-        '3xl': '64px',
-      },
     },
   },
   plugins: [
-    // @ts-ignore - Временно игнорируем проблемы типизации плагина
-    function ({ addUtilities }) {
-      const newUtilities = {
-        '.backdrop-filter-none': {
-          'backdrop-filter': 'none',
-        },
-        '.backdrop-filter-blur': {
-          'backdrop-filter': 'blur(8px)',
-        },
-        '.backdrop-filter-blur-md': {
-          'backdrop-filter': 'blur(12px)',
-        },
-        '.backdrop-filter-blur-lg': {
-          'backdrop-filter': 'blur(16px)',
-        },
-      };
-      addUtilities(newUtilities);
-    },
+    backdropBlurPlugin,
   ],
 };
 
