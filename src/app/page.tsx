@@ -20,14 +20,14 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center">
         <div className="absolute inset-0 z-0">
-          <Image
+        <Image
             src="/images/hero-bg.jpg"
             alt="TrueSpace Background"
             layout="fill"
             objectFit="cover"
             className="opacity-30"
-            priority
-          />
+          priority
+        />
           <div className="absolute inset-0 bg-gradient-to-b from-dark-400/70 to-dark-500/95"></div>
         </div>
         
