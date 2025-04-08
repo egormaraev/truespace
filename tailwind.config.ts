@@ -61,7 +61,26 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    // @ts-ignore - Временно игнорируем проблемы типизации плагина
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.backdrop-filter-none': {
+          'backdrop-filter': 'none',
+        },
+        '.backdrop-filter-blur': {
+          'backdrop-filter': 'blur(8px)',
+        },
+        '.backdrop-filter-blur-md': {
+          'backdrop-filter': 'blur(12px)',
+        },
+        '.backdrop-filter-blur-lg': {
+          'backdrop-filter': 'blur(16px)',
+        },
+      };
+      addUtilities(newUtilities);
+    },
+  ],
 };
 
 export default config; 
